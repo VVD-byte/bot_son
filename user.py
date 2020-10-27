@@ -15,7 +15,7 @@ def fun(func):
 class users:
     def __init__(self):
         self.mess_id = 0
-        self.data_1 = 0
+        self.data_1 = ''
         self.data_2_1 = ''
         self.data_2_2 = ''
         self.data_3 = ''
@@ -24,7 +24,7 @@ class users:
     '''def __repr__(self):
         return f"{self.data_1} {self.data_2} {self.data_3}"'''
     def reset(self):
-        self.data_1 = 0
+        self.data_1 = ''
         self.data_2_1 = ''
         self.data_2_2 = ''
         self.data_3 = ''
@@ -38,14 +38,18 @@ class users:
     @fun
     def get_data_2(self, dat, id):
         self.mess_id = id
-        self.data_2_1, self.data_2_2 = re.findall(r'\d{1,2}:\d{1,2}', dat)[0], re.findall(r'\d{1,2}:\d{1,2}', dat)[1]
+        self.data_2_1, self.data_2_2 = self.f_t(re.findall(r'\d{1,2}:\d{1,2}', dat)[0]), self.f_t(re.findall(r'\d{1,2}:\d{1,2}', dat)[1])
 
     @fun
     def get_data_3(self, dat, id):
         self.mess_id = id
         self.data_3 = int(re.findall(r'\d{1,2}', dat)[0])
 
+    def f_t(self, t):
+        b = datetime.datetime.strptime(t, '%H:%M')
+        return b.strftime('%H:%M')
+
     def proof(self):
-        if self.data_1 != 0 and self.data_2_1 != '' and self.data_3 != '':
+        if self.data_1 != '' and self.data_2_1 != '' and self.data_3 != '':
             return True
         else: return False
