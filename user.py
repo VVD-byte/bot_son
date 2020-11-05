@@ -20,6 +20,7 @@ class users:
         self.data_2_2 = ''
         self.data_3 = ''
         self.vibor = []
+        self.vibor_week = []
 
     '''def __repr__(self):
         return f"{self.data_1} {self.data_2} {self.data_3}"'''
